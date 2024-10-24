@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bookmy</title>
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <link rel="stylesheet" href="css/feather.css">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="https://img4.teletype.in/files/3b/8e/3b8e02c6-eb6a-4b3f-a13d-1ab720e19ba4.png">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+    
+    
+    <style>	
+			
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed; /* Fijo */
+            z-index: 1; /* Encima de todo */
+            left: 0;
+            top: 0;
+            width: 100%; /* Ancho completo */
+            height: 100%; /* Alto completo */
+            overflow: auto; /* Habilitar scroll si es necesario */
+            background-color: rgb(0, 0, 0); /* Color de fondo negro */
+            background-color: rgba(0, 0, 0, 0.4); /* Fondo negro con opacidad */
+        }
+
+        .modal-content {
+            background-color: dodgerblue; /* Azul */
+            margin: auto; /* Centramos el modal */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Ancho del 80% */
+            max-width: 400px; /* Ancho máximo de 400px */
+            border-radius: 15px; /* Bordes más redondeados */
+            position: absolute; /* Posición absoluta para centrar verticalmente */
+            top: 50%; /* Colocar en el medio verticalmente */
+            left: 50%; /* Colocar en el medio horizontalmente */
+            transform: translate(-50%, -50%); /* Ajustar para centrar */
+            color: white; /* Texto blanco */
+        }
+
+        .close {
+            color: #fff; /* Color blanco para el botón de cerrar */
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #ddd; /* Color gris claro al pasar el mouse */
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    </style>
+    
+    
+
+</head>
+
+<body class="color-theme-blue mont-font">
+
+    <div class="preloader"></div>
+
+    
+    <div class="main-wrapper">
+
+        <!-- navigation top-->
+        
+        <div class="nav-header bg-white shadow-xs border-0">
+        
+            <div class="nav-top">
+                <a href="#" onclick='abrir_url("index.html")'><img src="https://img4.teletype.in/files/3b/8e/3b8e02c6-eb6a-4b3f-a13d-1ab720e19ba4.png" width="40px" alt=""><span class="d-inline-block fredoka-font ls-3 fw-600 text-current font-xxl logo-text mb-0" style="margin-left: 5px;text-decoration: none;"><p style="font-size: 20px;margin-top: 15px">Bookmy</p></span></a>
+                <a href="#" class="mob-menu ms-auto me-2 chat-active-btn"><i class="feather-book text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
+                <a href="#fecha-texto" class="mob-menu me-2" onclick="guardados()"><i class="feather-bookmark text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
+                <a href="#" class="me-2 menu-search-icon mob-menu"><i class="feather-search text-grey-900 font-sm btn-round-md bg-greylight"></i></a>
+                <button class="nav-menu me-0 ms-2"></button>
+            </div>
+            
+            <div action="#" class="float-left header-search">
+                <div class="form-group mb-0 icon-input">
+                    <i class="feather-search font-sm text-grey-400"></i>
+                    <input type="text" id="entrada1" placeholder="Buscar Libro" class="bg-grey border-0 lh-32 pt-2 pb-2 ps-5 pe-3 font-xssss fw-500 rounded-xl w350 theme-dark-bg">
+		<button onclick="buscar(1)" style="border-radius:10px; color:white;padding: 5px; background: #1E74FD;">Buscar</button>                
+                </div>
+            </div>                
+            
+            
+
+            
+        </div>
+        <!-- navigation top -->
+
+        <!-- navigation left -->
+        <nav class="navigation scroll-bar">
+            <div class="container ps-0 pe-0">
+                <div class="nav-content">
+
+                    <div class="nav-wrap bg-white bg-transparent-card rounded-xxl shadow-xss pt-3 pb-1 mb-2">
+                        <div class="nav-caption fw-600 font-xssss text-grey-500"><span>Menu</span></div>
+                        <ul class="mb-3">
+
+                             
+                            <li><a href="http://linkfork.io/bookmyyy" class="nav-content-bttn open-font"><img src="https://img4.teletype.in/files/38/91/38912d35-637c-4720-a946-407951db22e0.png" width="30px" alt="cargando imagen..." loading="lazy"><span style="margin-left: 5px">Blog Bookmy</span></a></li> 
+                            <li><a href="http://linkfork.io/bookmyy" class="nav-content-bttn open-font"><img src="https://img2.teletype.in/files/57/03/5703d8ab-75fa-4716-b505-347b109c77ee.png" width="30px" alt="cargando imagen..." loading="lazy"><span style="margin-left: 5px">Contacto & Soporte</span></a></li>                        
+                       		 <li><a href="http://linkfork.io/bookmy" class="nav-content-bttn open-font"><img src="https://img3.teletype.in/files/a2/31/a23179fa-fdf1-4f34-925e-821b2f90e643.png" width="30px" alt="cargando imagen..." loading="lazy"><span style="margin-left: 5px">Compartir app</span></a></li>
+                        	
+                        </ul>
+                    </div>
+                    			<center>
+									<img src="https://img2.teletype.in/files/95/1b/951b514a-2493-4fed-8e8e-9a3360048a64.png" alt="cargando imagen..." width="50%">
+									</center>
+                </div>
+            </div>
+        </nav>
+        <!-- navigation left -->
+        <!-- main content -->
+        <div class="main-content right-chat-active">
+            
+            <div class="middle-sidebar-bottom">
+                <div class="middle-sidebar-left">
+                    <!-- loader wrapper -->
+                    <div class="preloader-wrap p-3">
+                        <div class="box shimmer">
+                            <div class="lines">
+                                <div class="line s_shimmer"></div>
+                                <div class="line s_shimmer"></div>
+                                <div class="line s_shimmer"></div>
+                                <div class="line s_shimmer"></div>
+                            </div>
+                        </div>
+                        <div class="box shimmer mb-3">
+                            <div class="lines">
+                                <div class="line s_shimmer"></div>
+                                <div class="line s_shimmer"></div>
+                                <div class="line s_shimmer"></div>
+                                <div class="line s_shimmer"></div>
+                            </div>
+                        </div>
+                        <div class="box shimmer">
+                            <div class="lines">
+                                <div class="line s_shimmer"></div>
+                                <div class="line s_shimmer"></div>
+                                <div class="line s_shimmer"></div>
+                                <div class="line s_shimmer"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- loader wrapper -->
+                    <div class="row feed-body">
+                    
+                    
+                    <!----------------------- Inicio del Feed 1 -->   
+                        <div class="col-xl-8 col-xxl-9 col-lg-8" id="feed-1" id="inicio">
+
+				
+                            <div class="card w-100 shadow-none bg-transparent bg-transparent-card border-0 p-0 mb-0">
+                                <div class="owl-carousel category-card owl-theme overflow-hidden nav-none" id="mini-post-dinamico">                                    
+                                </div>
+                            </div>
+				 <div class="card w-100 shadow-xss rounded-xxl border-0 mb-3" id="efemeride-diaria">
+				<!-------------- Formato de efemeride Diaria --> 			
+                                <div class="card-body d-flex align-items-center  p-4">
+                                    <h4 class="fw-700 mb-0 font-xssss text-grey-900">Efemeride del Dia</h4>
+                                    <a href="#efemerides" class="fw-600 ms-auto font-xssss text-primary">Explorar mes</a>
+                                </div>
+                                <div class="card-body d-flex pt-0 ps-4 pe-4 pb-3 overflow-hidden" id="fecha-texto">
+
+                                </div>
+                 <!------------------------------------ -->                
+           </div>
+
+
+			<div id="post-principal">
+
+		</div>
+    <div class="card w-100 shadow-none bg-transparent bg-transparent-card border-0 p-0 mb-0">
+                                <div class="owl-carousel category-card owl-theme overflow-hidden nav-none" id="mini-post-dinamico2">                               
+                                </div>
+                            </div>
+
+                        </div>
+                        
+           			<!----------------------- Fin del Feed 1 -->             
+           
+                            <!----------------------- Inicio del Feed 2 -->           
+                        <div class="col-xl-4 col-xxl-3 col-lg-4 ps-lg-0">
+
+                            <div class="card w-100 shadow-xss rounded-xxl border-0 p-0 " id="materias">
+                                <div class="card-body d-flex align-items-center p-4 mb-0">
+                                    <h4 class="fw-700 mb-0 font-xssss text-grey-900">Materias</h4>
+                                    <a href="#" class="fw-600 ms-auto font-xssss text-primary">Explora</a>
+                                </div>
+
+                               <div id="feed-materias"></div>
+                                
+                               
+                            </div>
+
+<br>
+
+                            <div class="card w-100 shadow-xss rounded-xxl border-0 mb-3" id="efemerides">
+                                <div class="card-body d-flex align-items-center  p-4">
+                                    <h4 class="fw-700 mb-0 font-xssss text-grey-900">Efemerides del mes</h4>
+                                    <a href="#" class="fw-600 ms-auto font-xssss text-primary">Todas</a>
+                                </div>
+                                <div id="feed-efemerides">
+
+                            </div>
+                            
+                        </div>
+                        <!----------------------- Fin del Feed 2 -->
+
+                    </div>
+                    
+                    
+                    
+                    
+                </div>
+                
+            </div>            
+        </div>
+        <!-- main content -->
+
+        <!-- right chat -->
+        <div class="right-chat nav-wrap mt-2 right-scroll-bar">
+            <div class="middle-sidebar-right-content bg-white shadow-xss rounded-xxl">
+
+                <!-- loader wrapper -->
+                <div class="preloader-wrap p-3">
+                    <div class="box shimmer">
+                        <div class="lines">
+                            <div class="line s_shimmer"></div>
+                            <div class="line s_shimmer"></div>
+                            <div class="line s_shimmer"></div>
+                            <div class="line s_shimmer"></div>
+                        </div>
+                    </div>
+                    <div class="box shimmer mb-3">
+                        <div class="lines">
+                            <div class="line s_shimmer"></div>
+                            <div class="line s_shimmer"></div>
+                            <div class="line s_shimmer"></div>
+                            <div class="line s_shimmer"></div>
+                        </div>
+                    </div>
+                    <div class="box shimmer">
+                        <div class="lines">
+                            <div class="line s_shimmer"></div>
+                            <div class="line s_shimmer"></div>
+                            <div class="line s_shimmer"></div>
+                            <div class="line s_shimmer"></div>
+                        </div>
+                    </div>
+                </div>
+              
+                <div class="section full pe-3 ps-4 pt-4 pb-4 position-relative feed-body">
+                    <h4 class="font-xsssss text-grey-500 text-uppercase fw-700 ls-3">Materias</h4>
+                    <ul class="list-group list-group-flush"  id="lista-materias">
+
+                    </ul>
+                    
+                </div>
+
+
+            </div>
+        </div>
+
+        
+        <!-- right chat -->
+        <!--------------- Menu inferior -->
+        <div class="app-footer border-0 shadow-lg bg-primary-gradiant">
+            <a href="#feed-1" class="nav-content-bttn nav-center"><i class="feather-home"></i></a>
+            <a href="#efemerides" class="nav-content-bttn"><i class="feather-calendar"></i></a>          
+            <a href="#materias" class="nav-content-bttn"><i class="feather-layers"></i></a>
+            <!--<a href="#" class="nav-content-bttn open-font model-popup-chat"><i class="feather-map"></i></a>-->
+
+        </div>
+ <!--------------- -->
+ 
+ 
+ 
+        <div class="app-header-search">
+            <div class="search-form">
+                <div class="form-group searchbox mb-0 border-0 p-1">
+                    <input type="text" class="form-control border-0" placeholder="Buscar Libro" id="entrada2">
+                    <center>
+                     <button onclick="buscar(2)" style="border-radius:10px; color:white; width: 20%; background: #1E74FD;">Buscar</button>
+                     </center>
+                    <i class="input-icon">
+                        <ion-icon name="search-outline" role="img" class="md hydrated" aria-label="search outline"></ion-icon>
+                    </i>
+                    <a href="#" class="ms-1 mt-1 d-inline-block close searchbox-close">
+                        <i class="ti-close font-xs"></i>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+
+    </div> 
+
+
+   <!-- <div class="modal-popup-chat">
+        <div class="modal-popup-wrap bg-white p-0 shadow-lg rounded-3">
+            <div class="modal-popup-header w-100 border-bottom">
+                <div class="card p-3 d-block border-0 d-block">
+									<div id="contenido-flotante">
+									<a href="#" class="font-xssss position-absolute right-0 top-0 mt-3 me-4"><i class="ti-close text-grey-900 mt-2 d-inline-block"></i></a>
+               
+                   				 <h5 class="fw-700 text-primary font-xssss mt-1 mb-1">Mapa</h5>
+        								 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhBrAg4_zZxXqdZueYMQytvVa9QXchfs635cGOQ-oO6ggJroOnbk6i7ZwT-w9ppAEu11bXJTk152vJn8s_3WRGz1Ya8yNkypL2Bhc53krzCgtvivUMV_jkCIPadPEozLsJ_zowI7E33T2Q8P0C2xJCzjEFjOLfjOaOh-xvb5pSxwptCvUG82cnlcOo3ZCQ/w945-h600-p-k-no-nu/mapa.png" alt="cargando imagen..." width="100%" loading="lazy">
+          						</div>
+                   
+                </div>
+            </div>
+          			 
+        </div> 
+    </div>-->
+
+    
+        <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrar()" style="padding: 5px">&times;</span>
+          	<h4 style="color:white"><u> Versión</u> <u>Demostración</u></h4>
+            <p>¡Bienvenido a la versión demo de Bookmy! Para acceder a todos los libros y materiales de estudio, descarga la app oficial y activa tu suscripción haciendo clic en el siguiente botón</p>
+            <br>
+            <center>
+            <a href="https://telegra.ph/Guia-para-activar-la-suscripcion-10-23"><button style="padding: 4px; border-radius: 10px; background: white;">Activar</button></a>
+            </center>
+        </div>
+    </div>
+
+    <script src="js/plugin.js"></script>
+
+    <script src="js/lightbox.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="datos.js"></script>
+    <script src="efemerides.js"></script>
+
+    <script>
+        // Obtener el modal
+        var modal = document.getElementById("modal");
+
+        // Obtener el elemento <span> que cierra el modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // Función para abrir el modal
+        function openModal() {
+            modal.style.display = "block";
+        }
+
+        // Cuando el usuario hace clic en <span> (x), cierra el modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+			function cerrar(){
+				
+                modal.style.display = "none";
+            
+			}        
+        
+        // Cuando el usuario hace clic en cualquier parte fuera del modal, cierra el modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+       
+            </script>
+
+ 
+<script type="text/javascript">
+
+
+	function abrir_url(cadena_url) {
+			openModal()		
+	}
+
+   //Quita las vocales con acentos,ademas convierte todo el texto a minusculas
+	function limpiar_texto(texto) {
+		return texto.normalize('NFD').replace(/[\u0300-\u036f]/gi,"").toLowerCase();
+	}
+   //Genera un numero aleatorio [0,maximo]
+	function numero_aleatorio(maximo){
+        return Math.floor(Math.random()*(maximo+1));
+	}
+
+	
+	// Funcion para convertir esto: "hola mundo" a "Hola Mundo"
+	function letra_titulo(palabra) {
+			titulo = "";
+			espacio = 0;
+			for(x = 0; x < palabra.length; x++){
+					if(x == 0){
+							titulo = titulo+palabra[0].toUpperCase();
+					}else if(espacio == 1){
+							titulo = titulo+palabra[x].toUpperCase();
+							espacio = 0;
+					}else if(palabra[x] == " "){
+							espacio = 1;
+							titulo = titulo+palabra[x];
+					}else{
+							titulo = titulo+palabra[x];
+					}
+
+			}
+			return titulo;
+	}
+	
+	function resumir_texto(texto,longitud){
+   	resumen = "";
+      if(longitud < texto.length){
+      	for(caracteres = 0; caracteres < longitud; caracteres++){
+         	resumen = resumen+texto[caracteres];
+         }
+         resumen = resumen+"..."; 
+      }else{ 
+         resumen = texto;
+      }
+      
+      return resumen;     
+	}
+	//No agrega los 3 puntos al final
+	function resumir_texto2(texto,longitud){
+   	resumen = "";
+      if(longitud < texto.length){
+      	for(caracteres = 0; caracteres < longitud; caracteres++){
+         	resumen = resumen+texto[caracteres];
+         }
+         resumen = resumen; 
+      }else{ 
+         resumen = texto;
+      }
+      
+      return resumen;     
+	}	
+	
+	function mostrar_efemerides(){
+		fecha = new Date();
+		mes = fecha.getMonth() + 1; //Le sumo 1 porque la funcion toma los meses de [0,11] 
+		dia = fecha.getDate();
+		meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+		clave = String(dia)+" de "+meses[mes-1];
+		colores = ["success","warning","primary"];
+		color = colores[numero_aleatorio(2)]; //genero un color aleatorio
+		tal_dia_como_hoy = "";		
+		if(efemerides[clave] != undefined) {
+			tal_dia_como_hoy = efemerides[clave];
+			if(dia < 10){dia = "0"+String(dia)}
+			formato = '<div class="bg-'+color+' me-2 p-3 rounded-xxl"><h4 class="fw-700 font-lg ls-3 lh-1 text-white mb-0"><span class="ls-1 d-block font-xsss text-white fw-600">'+resumir_texto2(meses[mes-1],3).toUpperCase()+'</span>'+String(dia)+'</h4></div><h4 class="fw-700 text-grey-900 font-xssss mt-2">Tal dia como hoy <span class="d-block font-xsssss fw-500 mt-1 lh-4 text-black-500">'+tal_dia_como_hoy+'</span></h4>';
+			document.getElementById("fecha-texto").innerHTML=formato;
+		}
+		
+		feed_efemerides = '';
+		for(dias = 1; dias <= 31; dias++) {
+			clave = String(dias)+" de "+meses[mes-1];
+			if(efemerides[clave] != undefined){
+				if(dias < 10){dias = "0"+String(dias)}
+				color = colores[numero_aleatorio(2)]; //genero un color aleatorio
+				tal_dia = efemerides[clave];
+				feed_efemerides = feed_efemerides + '<div class="card-body d-flex pt-0 ps-4 pe-4 pb-3 overflow-hidden"><div class="bg-'+color+' me-2 p-3 rounded-xxl"><h4 class="fw-700 font-lg ls-3 lh-1 text-white mb-0"><span class="ls-1 d-block font-xsss text-white fw-600">'+resumir_texto2(meses[mes-1],3).toUpperCase()+'</span>'+String(dias)+'</h4></div><h4 class="fw-700 text-grey-900 font-xssss mt-2"><span class="d-block font-xsssss fw-500 mt-1 lh-4 text-black-500">'+tal_dia+'</span> </h4></div>';
+			}
+		}
+		document.getElementById("feed-efemerides").innerHTML=feed_efemerides;
+		
+	}
+	
+	function mostrar_materias(){
+		feed = '';
+		for(posicion = 0; posicion < datos["informacion"]["materias"].length; posicion++){
+			materia = datos["informacion"]["materias"][posicion];
+			clave = materia;
+			materia = letra_titulo(materia.replace(/_/gi," "));
+			formato = '<a href="#post-principal"><div class="card-body bg-transparent-card d-flex p-3 bg-greylight m-3 rounded-3" onclick="manipular_feed(\''+clave+'\')"><h4 class="fw-700 text-grey-900 font-xssss mt-2">'+materia+'</h4><a href="#" class="btn-round-sm bg-white text-grey-900 feather-chevron-right font-xss ms-auto mt-2"></a></div></a>';
+			feed = feed+formato;
+		}
+		document.getElementById("feed-materias").innerHTML = feed;
+	}
+	
+	function lista_materias(){
+		lista = '';
+		colores = ['primary-gradiant','gold-gradiant','mini-gradiant','success'];
+		for(posicion = 0; posicion < datos["informacion"]["materias"].length; posicion++){
+			clave = datos["informacion"]["materias"][posicion];
+			materia = datos["informacion"]["materias"][posicion];
+			materia = letra_titulo(materia.replace(/_/gi," "));
+			color = colores[numero_aleatorio(3)];
+			formato = '<li class="bg-transparent list-group-item no-icon pe-0 ps-0 pt-2 pb-2 border-0 d-flex align-items-center" onclick="manipular_feed(\''+clave+'\')"><span class="btn-round-sm bg-'+color+' me-3 ls-3 text-white font-xssss fw-700">'+resumir_texto2(materia,2).toUpperCase()+'</span><h3 class="fw-700 mb-0 mt-0"><a class="font-xssss text-grey-600 d-block text-dark" href="#post-principal">'+materia+'</a></h3></li>';
+			lista = lista+formato;
+		}
+		document.getElementById("lista-materias").innerHTML = lista;
+	}	
+
+	
+	
+	//Funcion para colocar libros aleatorios(irrepetibles) en la seccion de explorar, caja de explora, y caja de materias
+	function explorar_libros(cantidad){
+		lista_de_libros = []; //Todos los libros de todas las materias		
+		//Bucle para almacenar todos los libros en una sola lista
+		for(posicion = 0; posicion < datos["informacion"]["materias"].length; posicion++) {
+			materia = datos["informacion"]["materias"][posicion];
+			for(posicion2  = 0; posicion2 < datos[materia].length; posicion2++) {
+				lista_de_libros.push(datos[materia][posicion2]);
+			}
+
+		}	
+		//Asigno el mini-post dinamico 1
+		post_dinamico = "";
+		for(libro = 0; libro < 10; libro++){
+			posicion = numero_aleatorio((lista_de_libros.length-1));
+			portada = lista_de_libros[posicion]["portada"];
+			nombre_libro = resumir_texto((lista_de_libros[posicion]["nombre"]).replace(/_/gi," ").toUpperCase(),10);
+			nombre_materia = lista_de_libros[posicion]["asignatura"];
+			nombre_materia = resumir_texto(letra_titulo(nombre_materia.replace(/_/gi," ")),10);
+			url_libro = lista_de_libros[posicion]["url"];
+			formato_caja = '<div class="item"><div class="card w200 d-block border-0 shadow-xss rounded-xxl overflow-hidden mb-3 me-2 mt-3"><div class="card-body position-relative h100 bg-image-cover bg-image-center" style="background-image: url('+portada+');"></div><div class="card-body d-block w-100 ps-4 pe-4 pb-4 text-center"><div class="clearfix"></div><h4 class="fw-700 font-xsss mt-2 mb-1">'+nombre_materia+'</h4><p class="fw-500 font-xsssss text-black-500 mt-0 mb-2">'+nombre_libro+'</p><a href="#" onclick="abrir_url(\''+url_libro+'\')"><span class="live-tag mt-2 mb-0 bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppersace fw-700 ls-3">Leer</span></a><div class="clearfix mb-2"></div></div></div></div>';		
+			post_dinamico = post_dinamico + formato_caja;
+			//Elimino el libro mostrado de la lista para que no se repita en la pagina de explorar
+			lista_de_libros.splice(posicion,1);
+		}
+		document.getElementById("mini-post-dinamico").innerHTML = post_dinamico;
+		//------------------------------------------------------------------
+		
+		
+		
+		
+		//Asigno el mini-post dinamico 2
+		post_dinamico = "";
+		for(libro = 0; libro < 10; libro++){
+			posicion = numero_aleatorio((lista_de_libros.length-1));
+			portada = lista_de_libros[posicion]["portada"];
+			nombre_libro = resumir_texto((lista_de_libros[posicion]["nombre"]).replace(/_/gi," ").toUpperCase(),10);
+			nombre_materia = lista_de_libros[posicion]["asignatura"];
+			nombre_materia = resumir_texto(letra_titulo(nombre_materia.replace(/_/gi," ")),10);
+			url_libro = lista_de_libros[posicion]["url"];
+			formato_caja = '<div class="item"><div class="card w200 d-block border-0 shadow-xss rounded-xxl overflow-hidden mb-3 me-2 mt-3"><div class="card-body position-relative h100 bg-image-cover bg-image-center" style="background-image: url('+portada+');"></div><div class="card-body d-block w-100 ps-4 pe-4 pb-4 text-center"><div class="clearfix"></div><h4 class="fw-700 font-xsss mt-2 mb-1">'+nombre_materia+'</h4><p class="fw-500 font-xsssss text-black-500 mt-0 mb-2">'+nombre_libro+'</p><a href="#" onclick="abrir_url(\''+url_libro+'\')"><span class="live-tag mt-2 mb-0 bg-success p-2 z-index-1 rounded-3 text-white font-xsssss text-uppersace fw-700 ls-3">Leer</span></a><div class="clearfix mb-2"></div></div></div></div>';		
+			post_dinamico = post_dinamico + formato_caja;
+			//Elimino el libro mostrado de la lista para que no se repita en la pagina de explorar
+			lista_de_libros.splice(posicion,1);
+		}
+		document.getElementById("mini-post-dinamico2").innerHTML = post_dinamico;
+		//------------------------------------------------------------------	
+	
+		//Bucle para mostrar los libros en la seccion Explorar
+		feed = '<center><h1 id="titulo-feed">Explora</h1></center>';
+		if(cantidad <= lista_de_libros.length){	
+			//console.log("normal")
+			for(libro = 0; libro < cantidad; libro++){
+				posicion = numero_aleatorio(lista_de_libros.length-1);
+				nombre_materia = lista_de_libros[posicion]["asignatura"];
+				nombre_libro = (lista_de_libros[posicion]["nombre"]).replace(/_/gi," ").toUpperCase();
+				portada = lista_de_libros[posicion]["portada"];
+				npaginas = lista_de_libros[posicion]["paginas"];
+				//Edito el nombre de la materia despues de usarlo para acceder a los datos, ya que si lo hago anter generaria un error
+				nombre_materia = letra_titulo(nombre_materia.replace(/_/gi," "));
+				url_libro = lista_de_libros[posicion]["url"];
+				//Formato general con ambos botones de guardar y eliminar libros
+				//formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex"><i class="feather-bookmark text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="guardar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Marcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Con una marca es mas facil encontrarlo</span></h4></div><div class="card-body p-0 d-flex mt-2"><i class="feather-delete text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="eliminar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Desmarcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Remueve de la lista de marcados</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="cargando imagen..." width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="'+url_libro+'" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';
+				objeto_libro = [lista_de_libros[posicion]["nombre"],url_libro,String(npaginas),portada,lista_de_libros[posicion]["asignatura"]]
+				longitud_memoria = localStorage.valueOf().length
+				if(longitud_memoria == 0){
+					//Formato con solo la opcion de guardar libro
+					formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex"><i class="feather-bookmark text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="guardar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Marcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Con una marca es mas facil encontrarlo</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="cargando imagen..." width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="#" onclick="abrir_url(\''+url_libro+'\')" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';
+				}else{
+					if(verificar_guardado(objeto_libro) == 1){
+						//Formato con sola la opcion de eliminar libros
+						formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex mt-2"><i class="feather-delete text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="eliminar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Desmarcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Remueve de la lista de marcados</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="cargando imagen..." width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="#" onclick="abrir_url(\''+url_libro+'\')" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';	
+					}else{
+						//Formato con solo la opcion de guardar libro
+						formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex"><i class="feather-bookmark text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="guardar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Marcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Con una marca es mas facil encontrarlo</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="cargando imagen..." width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="#" onclick="abrir_url(\''+url_libro+'\')" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';
+					}
+				}
+				feed = feed + formato;
+				//Elimino el libro mostrado de la lista para que no se repita en la pagina de explorar
+				lista_de_libros.splice(posicion,1);
+			}
+		}else{
+			//Else por si la cantidad de libros a mostras excede la longitu de libros total
+			cantidad = lista_de_libros.length;
+			//console.log("limite excedido");
+			for(libro = 0; libro < cantidad ; libro++){
+				posicion = numero_aleatorio(lista_de_libros.length-1);
+				nombre_materia = lista_de_libros[posicion]["asignatura"];
+				nombre_libro = (lista_de_libros[posicion]["nombre"]).replace(/_/gi," ").toUpperCase();
+				portada = lista_de_libros[posicion]["portada"];
+				npaginas = lista_de_libros[posicion]["paginas"];
+				//Edito el nombre de la materia despues de usarlo para acceder a los datos, ya que si lo hago anter generaria un error
+				nombre_materia = letra_titulo(nombre_materia.replace(/_/gi," "));
+				url_libro = lista_de_libros[posicion]["url"];
+				//Formato general con ambos botones de guardar y eliminar libros
+				//formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex"><i class="feather-bookmark text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="guardar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Marcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Con una marca es mas facil encontrarlo</span></h4></div><div class="card-body p-0 d-flex mt-2"><i class="feather-delete text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="eliminar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Desmarcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Remueve de la lista de marcados</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="cargando imagen..." width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="'+url_libro+'" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';
+				objeto_libro = [lista_de_libros[posicion]["nombre"],url_libro,String(npaginas),portada,lista_de_libros[posicion]["asignatura"]]
+				longitud_memoria = localStorage.valueOf().length;
+				if(longitud_memoria == 0){
+					//Formato con solo la opcion de guardar libro
+					formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex"><i class="feather-bookmark text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="guardar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Marcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Con una marca es mas facil encontrarlo</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="cargando imagen..." width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="#" onclick="abrir_url(\''+url_libro+'\')" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';
+				}else{
+					if(verificar_guardado(objeto_libro) == 1){
+						//Formato con sola la opcion de eliminar libros
+						formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex mt-2"><i class="feather-delete text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="eliminar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Desmarcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Remueve de la lista de marcados</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="cargando imagen..." width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="#" onclick="abrir_url(\''+url_libro+'\')" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';	
+					}else{
+						//Formato con solo la opcion de guardar libro
+						formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex"><i class="feather-bookmark text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="guardar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Marcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Con una marca es mas facil encontrarlo</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="cargando imagen..." width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="#" onclick="abrir_url(\''+url_libro+'\')" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';
+					}
+				}
+				feed = feed + formato;
+				//Elimino el libro mostrado de la lista para que no se repita en la pagina de explorar
+				lista_de_libros.splice(posicion,1);
+			}				
+		}
+		document.getElementById("post-principal").innerHTML = feed;
+	}
+	
+	function manipular_feed(clave){
+		lista_de_libros = []; //Todos los libros de todas las materias
+		materia = letra_titulo(clave.replace(/_/gi," "));
+		feed = '<center><h1 id="titulo-feed">'+materia+'</h1></center>';
+		
+		//Bucle para almacenar todos los libros en una sola lista
+		for(posicion = 0; posicion < datos[clave].length; posicion++) {
+			lista_de_libros.push(datos[clave][posicion]);
+		}
+		cantidad = lista_de_libros.length
+		for(libro = 0; libro < cantidad; libro++){
+			posicion = numero_aleatorio(lista_de_libros.length-1);
+			nombre_materia = lista_de_libros[posicion]["asignatura"];
+			nombre_libro = (lista_de_libros[posicion]["nombre"]).replace(/_/gi," ").toUpperCase();
+			portada = lista_de_libros[posicion]["portada"];
+			npaginas = lista_de_libros[posicion]["paginas"];
+			//Edito el nombre de la materia despues de usarlo para acceder a los datos, ya que si lo hago anter generaria un error
+			nombre_materia = letra_titulo(nombre_materia.replace(/_/gi," "));
+			url_libro = lista_de_libros[posicion]["url"];
+			//Formato general con ambos botones de guardar y eliminar libros
+			//formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex"><i class="feather-bookmark text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="guardar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Marcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Con una marca es mas facil encontrarlo</span></h4></div><div class="card-body p-0 d-flex mt-2"><i class="feather-delete text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="eliminar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Desmarcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Remueve de la lista de marcados</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="cargando imagen..." width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="'+url_libro+'" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';
+			objeto_libro = [lista_de_libros[posicion]["nombre"],url_libro,String(npaginas),portada,lista_de_libros[posicion]["asignatura"]]
+			longitud_memoria = localStorage.valueOf().length;
+			if(longitud_memoria == 0){
+				//Formato con solo la opcion de guardar libro
+				formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex"><i class="feather-bookmark text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="guardar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Marcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Con una marca es mas facil encontrarlo</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="cargando imagen..." width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="#" onclick="abrir_url(\''+url_libro+'\')" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';
+			}else{
+				if(verificar_guardado(objeto_libro) == 1){
+					//Formato con sola la opcion de eliminar libros
+					formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex mt-2"><i class="feather-delete text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="eliminar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Desmarcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Remueve de la lista de marcados</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="cargando imagen..." width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="#" onclick="abrir_url(\''+url_libro+'\')" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';	
+				}else{
+					//Formato con solo la opcion de guardar libro
+					formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex"><i class="feather-bookmark text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="guardar(\''+lista_de_libros[posicion]["nombre"]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+lista_de_libros[posicion]["asignatura"]+'\')">Marcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Con una marca es mas facil encontrarlo</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="cargando imagen..." width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="#" onclick="abrir_url(\''+url_libro+'\')" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';
+				}
+			}	
+			feed = feed + formato;
+			//Elimino el libro mostrado de la lista para que no se repita en la pagina de explorar
+			lista_de_libros.splice(posicion,1);
+			}	
+		document.getElementById("post-principal").innerHTML = feed;
+	}
+	
+	function buscar_x_en_y(termino,texto){
+		termino = termino.toLowerCase();
+		texto = texto.toLowerCase();
+		busqueda = new RegExp("\\b"+termino+"\\b","gi");
+		resultado = texto.match(busqueda);
+		if(resultado){
+      	return 1;
+		}else{
+      	return 0;
+		}
+	}
+	
+	function manipular_feed_busqueda(texto,resultados){
+		busqueda = letra_titulo(texto);
+		feed = '<center><h1 id="titulo-feed">'+busqueda+'</h1></center>';
+		for(libro = 0; libro < resultados.length; libro++){
+			nombre_materia = resultados[libro][4];
+			nombre_libro = (resultados[libro][0]).replace(/_/gi," ").toUpperCase();
+			portada = resultados[libro][3];
+			npaginas = resultados[libro][2];
+			//Edito el nombre de la materia despues de usarlo para acceder a los datos, ya que si lo hago anter generaria un error
+			nombre_materia = letra_titulo(nombre_materia.replace(/_/gi," "));
+			url_libro = resultados[libro][1];
+			//formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex"><i class="feather-bookmark text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="guardar(\''+resultados[libro][0]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+resultados[libro][4]+'\')">Marcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Con una marca es mas facil encontrarlo</span></h4></div><div class="card-body p-0 d-flex mt-2"><i class="feather-delete text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="eliminar(\''+resultados[libro][0]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+resultados[libro][4]+'\')">Desmarcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Remueve de la lista de marcados</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="" width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="'+url_libro+'" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';				
+
+			//Formato general con ambos botones de guardar y eliminar libros
+			//formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex"><i class="feather-bookmark text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="guardar(\''+resultados[libro][0]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+resultados[libro][4]+'\')">Marcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Con una marca es mas facil encontrarlo</span></h4></div><div class="card-body p-0 d-flex mt-2"><i class="feather-delete text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="eliminar(\''+resultados[libro][0]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+resultados[libro][4]+'\')">Desmarcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Remueve de la lista de marcados</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="" width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="'+url_libro+'" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';				
+
+			objeto_libro = [resultados[libro][0],url_libro,String(npaginas),portada,resultados[libro][4]]
+			longitud_memoria = localStorage.valueOf().length;
+			if(longitud_memoria == 0){
+				//Formato con solo la opcion de guardar libro
+				formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex"><i class="feather-bookmark text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="guardar(\''+resultados[libro][0]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+resultados[libro][4]+'\')">Marcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Con una marca es mas facil encontrarlo</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="" width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="#" onclick="abrir_url(\''+url_libro+'\')" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';				
+			}else{
+				if(verificar_guardado(objeto_libro) == 1){
+					//Formato con sola la opcion de eliminar libros
+					formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex mt-2"><i class="feather-delete text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="eliminar(\''+resultados[libro][0]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+resultados[libro][4]+'\')">Desmarcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Remueve de la lista de marcados</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="" width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="#" onclick="abrir_url(\''+url_libro+'\')" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';				
+				}else{
+					//Formato con solo la opcion de guardar libro
+					formato = '<div class="card w-100 shadow-xss rounded-xxl border-0 p-4 mb-3"><div class="card-body p-0 d-flex"><h4 class="fw-700 text-grey-900 font-xssss mt-1">'+nombre_materia+'<span class="d-block font-xssss fw-500 mt-1 lh-3 text-black-500">'+nombre_libro+'<br>Paginas: '+String(npaginas)+'</span></h4><a href="#" class="ms-auto" id="dropdownMenu5" data-bs-toggle="dropdown" aria-expanded="false"><i class="ti-more-alt text-grey-900 btn-round-md bg-greylight font-xss"></i></a><div class="dropdown-menu dropdown-menu-start p-4 rounded-xxl border-0 shadow-lg" aria-labelledby="dropdownMenu5"><div class="card-body p-0 d-flex"><i class="feather-bookmark text-grey-500 me-3 font-lg"></i><h4 class="fw-600 text-grey-900 font-xssss mt-0 me-4" onclick="guardar(\''+resultados[libro][0]+'\',\''+url_libro+'\',\''+npaginas+'\',\''+portada+'\',\''+resultados[libro][4]+'\')">Marcar Libro <span class="d-block font-xsssss fw-500 mt-1 lh-3 text-grey-500">Con una marca es mas facil encontrarlo</span></h4></div></div></div><div class="card-body p-0 mb-3 rounded-3 overflow-hidden"><img src="'+portada+'" alt="" width="100%" height="300" loading="lazy"></div><div class="card-body p-0 me-lg-5"></div><div class="card-body d-flex p-0"><a href="#" onclick="abrir_url(\''+url_libro+'\')" class="d-flex align-items-center fw-600 text-grey-900 text-dark lh-26 font-xssss"><i class="feather-book text-dark text-grey-900 btn-round-sm font-lg"></i><span class="d-none-xss">Leer</span></a></div></div>';				
+				}
+			}			
+			feed = feed + formato;
+			}	
+		document.getElementById("post-principal").innerHTML = feed;	
+	}
+	
+	function buscar(n){
+		posibles = [];
+		puntuacion = [];
+		resultados_medios = [];
+		puntuacion_media = [];
+		resultados = [];
+		puntos = 0;
+		promedio = 0;
+		repetir = 0;
+		if (n == 1) {
+			entrada = document.getElementById("entrada1").value;
+		}else {
+			entrada = document.getElementById("entrada2").value;
+		}
+		document.getElementById("entrada1").value="";
+		document.getElementById("entrada2").value="";
+		//Evito que la entrada este vacia y me liste todos los libros
+		if(entrada != ""){
+			materias = datos["informacion"]["materias"];
+			informacion = ""
+			x = 1
+			//Con este for recorro las materias
+			for(posicion = 0; posicion < materias.length; posicion++){
+				//Con este for recorro los libros de cada materia
+				for(posicion2 = 0; posicion2 < datos[materias[posicion]].length; posicion2++){
+					materia = materias[posicion];
+					libro = datos[materias[posicion]][posicion2]["nombre"];
+					url = datos[materias[posicion]][posicion2]["url"];
+					portada = datos[materias[posicion]][posicion2]["portada"];
+					paginas = datos[materias[posicion]][posicion2]["paginas"];
+					objeto = [libro,url,paginas,portada,materia];
+					//informacion = "";
+					//Armo un string que contenga la materia y el nombre del libro en una sola cadena
+					//Para que sea mas facil la comparacion de informacion
+					if(materia.split("_").length != 1){
+						informacion = materia.split("_")[0]+" "+materia.split("_")[1];
+					}else{
+						informacion = materia.split("_")[0];
+					}
+				
+					if(libro.split("_").length == 1){
+						informacion = informacion+" "+libro;
+					}else{
+						for(x = 0; x < libro.split("_").length; x++){
+							informacion = informacion+" "+libro.split("_")[x];
+						}
+					}
+					termino = limpiar_texto(entrada);
+					for(y = 0; y < termino.split(" ").length; y++){
+						if(buscar_x_en_y(termino.split(" ")[y],informacion)){
+									if (repetir == 0){
+										posibles.push(objeto);
+										repetir = 1;
+									}
+									puntos++;			
+						}
+					}
+					repetir = 0;
+					if(puntos != 0){
+						puntuacion.push(puntos);
+						promedio = promedio + puntos;
+						puntos = 0;
+					}
+				}
+			
+			}
+		
+			if (puntuacion.length != 0){
+				promedio = promedio/puntuacion.length;
+				for (x = 0; x < puntuacion.length; x++) {
+					if(puntuacion[x] >= promedio){
+						resultados_medios.push(posibles[x]);
+						puntuacion_media.push(puntuacion[x]);
+					}
+				}
+				longitud = termino.split(" ").length;
+				for(x = 0; x < resultados_medios.length; x++){
+					for(y = 0; y < puntuacion_media.length; y++){
+						if(puntuacion_media[y] == longitud){
+							resultados.push(resultados_medios[y]);
+						}
+					}
+					longitud = longitud-1;
+				}
+				manipular_feed_busqueda(entrada,resultados);
+			}else {
+				document.getElementById("titulo-feed").innerHTML = "Sin resultados";
+			}
+			//Moverme al titulo de busqueda
+			document.getElementById("fecha-texto").scrollIntoView({behavior:"smooth"})
+		}
+	}
+	
+
+	
+	// [1,2,3,4] => "1,2,3,4"
+	function convertir_lista_a_texto(lista){
+		texto = "";
+		for(z = 0; z < lista.length; z++){
+			if(z != (lista.length-1)){
+				texto = texto+lista[z]+",";
+			}else{
+				texto = texto+lista[z];
+			}
+		}
+		return texto;
+	}
+	
+	function comparar_listas(lista1,lista2){
+		respuesta = 0;		
+		if(lista1.length == lista2.length){
+			respuesta = 1;
+			for(l = 0; l < lista1.length; l++){
+				if(lista1[l] != lista2[l]){
+					respuesta = 0;
+					break;
+				}
+			}
+		}
+		return respuesta;
+	}
+	
+
+	
+	function obtener_guardados(){
+		texto_plano = localStorage.getItem("guardados");
+		objeto_general = texto_plano.split("|");
+		objetos = [];
+		for(p = 0; p < objeto_general.length; p++){
+			mini_objeto = objeto_general[p].split(",");
+			objetos.push(mini_objeto);
+		}
+		return objetos
+	}
+
+	function verificar_guardado(objec){
+		longitud = localStorage.valueOf().length;
+		respuesta = 0;
+		//Verifico si hay elementos guardados en localStorage para que no me genere error a la hora de acceder a ellos
+		if(longitud != 0){
+			libross = obtener_guardados();
+			for(y = 0; y < libross.length; y++){
+				if(comparar_listas(objec,libross[y]) == 1){
+					respuesta = 1;
+					break;
+				}
+			}
+		}
+		return respuesta;
+	}
+	
+	function guardar(libro,url,paginas,portada,materia){
+		objet = [libro,url,paginas,portada,materia];
+		objeto_plano = convertir_lista_a_texto(objet);
+		longitud = localStorage.valueOf().length;
+		if (longitud == 0){
+			localStorage.setItem("guardados",objeto_plano);
+		}else{
+			if(verificar_guardado(objet) == 0){
+				texto_plano = objeto_plano+"|"+localStorage.getItem("guardados");
+				localStorage.clear();
+				localStorage.setItem("guardados",texto_plano);				
+			}
+		}
+	}
+	
+	function eliminar(libro,url,paginas,portada,materia){
+		estructura = [libro,url,paginas,portada,materia];
+		if(verificar_guardado(estructura) == 1){
+			librosp = obtener_guardados();
+			listas = [];
+			texto_plano = "";
+			if(librosp.length == 1){
+				localStorage.clear();
+			}else{
+				for(n = 0; n < librosp.length; n++){		
+					if(comparar_listas(estructura,librosp[n]) != 1){
+						listas.push(librosp[n]);
+					}
+				}
+				texto_plano = listas.map(arr=>arr.join(",")).join("|")
+				localStorage.clear();
+				localStorage.setItem("guardados",texto_plano);	
+			}
+		
+		}
+	}
+	
+	function guardados(){
+		longitud = localStorage.valueOf().length
+		if(longitud == 0){
+			//document.getElementById("titulo-feed").innerHTML = "Sin libros guardados";
+			manipular_feed_busqueda("Sin libros guardados",[]);
+		}else{
+			manipular_feed_busqueda("Guardados",obtener_guardados());
+		}
+		document.getElementById("fecha-texto").scrollIntoView({behavior:"smooth"});
+	}
+	
+	explorar_libros(30);
+	mostrar_efemerides();
+	mostrar_materias();
+	lista_materias();
+    
+</script>
+  
+
+</body>
+
+</html>
